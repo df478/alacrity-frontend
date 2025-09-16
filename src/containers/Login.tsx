@@ -104,6 +104,7 @@ class NormalLoginForm extends React.Component<
         try {
             const urlSearchParams = new URLSearchParams(window.location.search)
             // @ts-ignore
+            // eslint-disable-next-line
             const params = Object.fromEntries(urlSearchParams.entries())
         } catch (e) {
             console.error(e)
