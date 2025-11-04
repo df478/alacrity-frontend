@@ -148,7 +148,7 @@ class PageRoot extends ApiComponent<
                                             marginInlineEnd: 30,
                                         }}
                                     >
-                                        <NewTabLink url="https://alacrity.com">
+                                        <NewTabLink url="https://alacrity-website.vercel.app/">
                                             {localize(
                                                 'page_root.docs_link',
                                                 'Docs'

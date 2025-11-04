@@ -332,7 +332,7 @@
     "login_form.use_session_storage": "Usar sessionStorage",
     "menu_item.app": "Apps",
     "menu_item.cluster": "Clúster",
-    "menu_item.dashboard": "Panel de Control",
+    "menu_item.dashboard": "Inicio",
     "menu_item.maintenance": "Mantenimiento",
     "menu_item.monitoring": "Monitoreo",
     "menu_item.settings": "Configuraciones",

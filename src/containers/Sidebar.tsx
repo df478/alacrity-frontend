@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     const MENU_ITEMS: MenuProps['items'] = [
         {
             key: 'dashboard',
-            label: localize('menu_item.dashboard', 'Dashboard'),
+            label: localize('menu_item.dashboard', 'Home'),
             icon: <LaptopOutlined />,
         },
         {

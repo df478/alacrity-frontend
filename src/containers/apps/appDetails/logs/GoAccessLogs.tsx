@@ -191,22 +191,58 @@ export default class GoAccessLogs extends Component<
         const reportUrl = report.url
         this.setState({ reportOpen: report.name })
 
-        this.props.apiManager
-            .getGoAccessReport(reportUrl)
-            .then((report: string) => {
-                // Add a couple extra override styles to the report to disable the hamburger menu that contains
-                // links which will result in navigating to the alacrity dashboard within the iframe
-                report = report.replace(
+        fetch(`https://alacran.alacran.codelabnow.tech/api/v1/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-namespace': 'alacran',
+            },
+            body: new URLSearchParams({
+                password: 'alacran42',
+            }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Login failed: ${response.status}`)
+                }
+                return response.json()
+            })
+            .then((loginData: any) => {
+                const token = loginData.data.token
+                if (!token) {
+                    throw new Error('No token returned from login')
+                }
+
+                return fetch(
+                    `https://alacran.alacran.codelabnow.tech/api/v1` +
+                        reportUrl,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'x-alacran-auth': token,
+                            'Content-Type': 'application/json',
+                            'x-namespace': 'alacran',
+                        },
+                    }
+                )
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Fetch report failed: ${response.status}`)
+                }
+                return response.text()
+            })
+            .then((html: string) => {
+                const modifiedHtml = html.replace(
                     '</head>',
                     `<style>.nav-bars{ display: none;} nav .nav-gears{ top: 30px;}</style></head>`
                 )
-                this.setState({ reportHtml: report })
+                this.setState({ reportHtml: modifiedHtml })
             })
-            .catch(
-                Toaster.createCatcher(() => {
-                    this.setState({ reportOpen: undefined })
-                })
-            )
+            .catch((error) => {
+                Toaster.toastError(error)
+                this.setState({ reportOpen: undefined })
+            })
     }
 
     onModalClose() {
