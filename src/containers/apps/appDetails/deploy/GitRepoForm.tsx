@@ -1,6 +1,5 @@
 import { Col, Input, Row } from 'antd'
 import { Component } from 'react'
-import { localize } from '../../../../utils/Language'
 import Utils from '../../../../utils/Utils'
 import PasswordField from '../../../global/PasswordField'
 import { RepoInfo } from '../../AppDefinition'
@@ -69,7 +68,7 @@ export default class GitRepoForm extends Component<{
                                 style={{ marginBottom: 20 }}
                                 value={this.props.gitRepoValues.user}
                                 addonBefore={<span>Username&nbsp;</span>}
-                                placeholder="myemail@gmail.com"
+                                placeholder="mygithubuser"
                                 type="email"
                                 onChange={(e) => {
                                     const newObj = Utils.copyObject(
@@ -91,41 +90,13 @@ export default class GitRepoForm extends Component<{
                         >
                             <PasswordField
                                 defaultValue={this.props.gitRepoValues.password}
-                                addonBefore="Password"
-                                placeholder="githubpassword"
+                                addonBefore="New Password"
+                                placeholder="123456"
                                 onChange={(e) => {
                                     const newObj = Utils.copyObject(
                                         this.props.gitRepoValues
                                     )
                                     newObj.password = e.target.value
-                                    this.props.updateRepoInfo(newObj)
-                                }}
-                            />
-                        </Col>
-                        <Col span={24}>
-                            <span>
-                                {localize(
-                                    'apps.deploy_ssh_key_replacement_description',
-                                    'Or, instead of username/password, use SSH Key:'
-                                )}
-                            </span>
-                            <Input.TextArea
-                                style={{ marginBottom: 20 }}
-                                rows={4}
-                                value={this.props.gitRepoValues.sshKey}
-                                placeholder={
-                                    '-----BEGIN RSA PRIVATE KEY-----\nAABBBCCC'
-                                }
-                                onChange={(e) => {
-                                    const newObj = Utils.copyObject(
-                                        this.props.gitRepoValues
-                                    )
-                                    newObj.sshKey = e.target.value
-                                    if (newObj.sshKey) {
-                                        // Upon changing SSH key, we forcefully remove user/pass to inform the user that SSH will take priority
-                                        newObj.password = ''
-                                        newObj.user = ''
-                                    }
                                     this.props.updateRepoInfo(newObj)
                                 }}
                             />

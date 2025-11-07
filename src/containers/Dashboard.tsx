@@ -531,7 +531,7 @@ export default class Dashboard extends ApiComponent<
                                         'On your local machine, simply run the following commands'
                                     )}
                                     <br />
-                                    <code>npm i -g alacrity</code>
+                                    <code>npm i -g alacrity-cli</code>
                                     <br />
                                     <code>
                                         {localize(
@@ -585,7 +585,7 @@ export default class Dashboard extends ApiComponent<
                             <p>
                                 {localize(
                                     'dashboard.alacrity_setup_success',
-                                    'You have installed and set AlaCrity up successfully! You can now deploy your apps! Remember, with AlaCrity, you can deploy applications from source code (such as Node.js, PHP, Java, Ruby, Python etc), and you can also deploy ready to go applications such as MySQL, MongoDB, WordPress, Redis, and many more!'
+                                    'You have installed and set AlaCrity up successfully! You can now deploy your apps! Remember, with AlaCrity, you can deploy applications from source code.'
                                 )}
                             </p>
 

@@ -6,6 +6,7 @@ import { localize } from '../../../../utils/Language'
 import Toaster from '../../../../utils/Toaster'
 import Utils from '../../../../utils/Utils'
 import ApiComponent from '../../../global/ApiComponent'
+import NewTabLink from '../../../global/NewTabLink'
 import { IAppDef, IAppVersion, RepoInfo } from '../../AppDefinition'
 import { AppDetailsTabProps } from '../AppDetails'
 import AppVersionTable from './AppVersionTable'
@@ -300,13 +301,13 @@ export default class Deployment extends ApiComponent<
                     <RocketOutlined />
                     {localize(
                         'apps.deploy_method_github',
-                        'Method 3: Deploy from Github/Bitbucket/Gitlab'
+                        'Method 3: Deploy from Github'
                     )}
                 </h4>
                 <p>
                     {localize(
                         'apps.deploy_method_github_description',
-                        'Enter your repository information in the form and save. Then copy the URL in the box as a webhook on Github, Bitbucket, Gitlab and etc. Once you push a commit, AlaCrity starts a new build.'
+                        'Enter your repository information in the form and save. Then copy the URL in the box as a webhook on Github. Once you push a commit, AlaCrity starts a new build.'
                     )}
                     <br />
                 </p>
@@ -391,12 +392,34 @@ export default class Deployment extends ApiComponent<
                         {localize('apps.edit_app_config', 'Save & Restart')}
                     </Button>
                 </Row>
+                <div style={{ height: 40 }} />
+                <h4>
+                    <RocketOutlined />
+                    {localize(
+                        'apps.deploy_method_gitlab',
+                        'Method 4: Deploy from Gitlab'
+                    )}
+                </h4>
+                <p>
+                    {localize(
+                        'apps.deploy_method_gitlab_description',
+                        'Step 1: Under Cluster click on Add Remote Registry. Step 2: Create CI/CD Variables on Gitlab. Step 3: Add Gitlab CI File to your repository.'
+                    )}
+                    <NewTabLink url="https://alacrity-website.vercel.app/docs/ci-cd-integration/deploy-from-gitlab.html#4--create-an-access-token-for-alacrity">
+                        {' '}
+                        {localize(
+                            'dashboard.dns_settings_effect_time_link',
+                            'See this link for more details'
+                        )}
+                    </NewTabLink>{' '}
+                    <br />
+                </p>
                 <div style={{ height: 20 }} />
                 <h4>
                     <RocketOutlined />
                     {localize(
                         'apps.deploy_method_dockerfile',
-                        'Method 4: Deploy plain Dockerfile'
+                        'Method 5: Deploy plain Dockerfile'
                     )}
                 </h4>
                 <UploaderPlainTextDockerfile
@@ -408,7 +431,7 @@ export default class Deployment extends ApiComponent<
                     <RocketOutlined />
                     {localize(
                         'apps.deploy_method_alacran_definition',
-                        'Method 5: Deploy alacran-definition file'
+                        'Method 6: Deploy alacran-definition file'
                     )}
                 </h4>
                 <UploaderPlainTextAlacranDefinition
@@ -420,7 +443,7 @@ export default class Deployment extends ApiComponent<
                     <RocketOutlined />
                     {localize(
                         'apps.deploy_method_image_name',
-                        'Method 6: Deploy via ImageName'
+                        'Method 7: Deploy via ImageName'
                     )}
                 </h4>
                 <UploaderPlainTextImageName
