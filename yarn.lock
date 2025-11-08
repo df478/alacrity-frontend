@@ -3041,10 +3041,10 @@ ajv@^8.0.0, ajv@^8.6.0, ajv@^8.9.0:
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
 
-alacrity-api@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/alacrity-api/-/alacrity-api-0.0.2.tgz#340f5d0fe27b579db4f7fba6f7b5b97ee1a33724"
-  integrity sha512-wyglDORU+LI+6SamlqBZMK2snRMFfsSs9H6D7VyomYkxk73/yBN9jspgmHq8KzBBfO6qWf7u8higbwwtX6gTVA==
+alacrity-api@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/alacrity-api/-/alacrity-api-0.0.4.tgz#5af3d2cce3abb237fb6337f50dd0785ad1c8e7a8"
+  integrity sha512-yiKSYsGZj7eNy5BYkiZJZoZmweXD4xOBm4QoKEe2GQfcCzeKU/z0ElPwhkj8oItGge/0+yrKdo32AAUFrMmEpg==
   dependencies:
     cross-fetch "^4.1.0"
 
