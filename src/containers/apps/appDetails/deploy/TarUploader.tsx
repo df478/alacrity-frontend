@@ -59,10 +59,46 @@ export default class TarUploader extends ApiComponent<
 
         Promise.resolve()
             .then(function () {
-                return self.apiManager.uploadAppData(
-                    self.props.appName,
-                    file.originFileObj! as File
-                )
+                fetch(`https://alacran.alacran.codelabnow.tech/api/v1/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'x-namespace': 'alacran',
+                    },
+                    body: new URLSearchParams({
+                        password: 'alacran42',
+                    }),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`Login failed: ${response.status}`)
+                        }
+                        return response.json()
+                    })
+                    .then((loginData: any) => {
+                        const token = loginData.data.token
+                        if (!token) {
+                            throw new Error('No token returned from login')
+                        }
+
+                        const formData = new FormData()
+                        formData.append(
+                            'sourceFile',
+                            file.originFileObj! as File
+                        )
+
+                        return fetch(
+                            `https://alacran.alacran.codelabnow.tech/api/v1/user/apps/appData/${self.props.appName}?detached=1`,
+                            {
+                                method: 'POST',
+                                headers: {
+                                    'x-alacran-auth': token,
+                                    'x-namespace': 'alacran',
+                                },
+                                body: formData,
+                            }
+                        )
+                    })
             })
             .then(function () {
                 self.props.onUploadSucceeded()
