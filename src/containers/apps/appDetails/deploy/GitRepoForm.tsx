@@ -90,7 +90,7 @@ export default class GitRepoForm extends Component<{
                         >
                             <PasswordField
                                 defaultValue={this.props.gitRepoValues.password}
-                                addonBefore="New Password"
+                                addonBefore="Password"
                                 placeholder="123456"
                                 onChange={(e) => {
                                     const newObj = Utils.copyObject(
